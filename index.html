@@ -1,9 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>OK</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rico Code - Applications Mobiles & Jeux</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #0f111a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            max-width: 720px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #9d4e9d;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            opacity: 0.78;
+            margin-bottom: 2rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            border: 2px solid #9d4e9d;
+            color: #9d4e9d;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #9d4e9d;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.55;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-  OK app ads
+    <div class="card">
+        <h1>Rico Code</h1>
+        <p>Developpement d'applications mobiles innovantes.</p>
+        <div class="actions">
+            <a href="app-ads.txt" class="btn">Fichier app-ads.txt</a>
+            <a href="privacy-policy.html" class="btn">Privacy Policy</a>
+        </div>
+        <div class="footer">
+            Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a><br>
+            &copy; 2026 Rico Code | Heberge sur GitHub Pages
+        </div>
+    </div>
 </body>
 </html>
