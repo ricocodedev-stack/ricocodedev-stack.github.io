@@ -3,88 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rico Code - Applications Mobiles & Jeux</title>
+    <meta name="description" content="Rico Code - Studio mobile et applications Android.">
+    <title>Rico Code - Applications Mobiles</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: #0f111a;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            text-align: center;
-            padding: 24px;
+        :root {
+            --bg: #07101b;
+            --bg-soft: #0c1727;
+            --panel: rgba(10, 18, 31, 0.82);
+            --panel-soft: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f4f8ff;
+            --muted: rgba(244, 248, 255, 0.7);
+            --accent: #4de3ff;
+            --accent-2: #5a8cff;
+            --shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+            --radius-xl: 32px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
+        }
+
+        * {
             box-sizing: border-box;
         }
 
-        .card {
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-            max-width: 720px;
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top, rgba(77, 227, 255, 0.12), transparent 28%),
+                linear-gradient(180deg, #040913 0%, #08111d 52%, #091321 100%);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 70px 70px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 92%);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            position: relative;
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 26px 0 40px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .brand-badge {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.34);
+            flex: 0 0 auto;
+        }
+
+        .brand-badge img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        h1 {
-            color: #9d4e9d;
-            margin-bottom: 0.5rem;
+        .brand-copy strong {
+            display: block;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
         }
 
-        p {
-            opacity: 0.78;
-            margin-bottom: 2rem;
+        .brand-copy span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.92rem;
         }
 
-        .actions {
+        .nav-actions,
+        .hero-actions,
+        .app-actions,
+        .footer-links {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            justify-content: center;
         }
 
         .btn {
-            border: 2px solid #9d4e9d;
-            color: #9d4e9d;
-            padding: 0.8rem 1.5rem;
-            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 0.86rem 1.16rem;
+            border-radius: 14px;
             text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-weight: 700;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
 
         .btn:hover {
-            background: #9d4e9d;
-            color: white;
+            transform: translateY(-1px);
+            border-color: rgba(77, 227, 255, 0.4);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, rgba(77, 227, 255, 0.2), rgba(90, 140, 255, 0.18));
+            border-color: rgba(77, 227, 255, 0.32);
+            box-shadow: 0 12px 26px rgba(77, 227, 255, 0.12);
+        }
+
+        .surface {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero {
+            padding: 28px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+            gap: 24px;
+            align-items: center;
+        }
+
+        .hero-copy {
+            padding: 8px 4px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(77, 227, 255, 0.1);
+            color: #b4f7ff;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.7rem, 6vw, 5.2rem);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+            max-width: 8ch;
+        }
+
+        .hero p {
+            margin-top: 18px;
+            max-width: 58ch;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        .hero-actions {
+            margin-top: 24px;
+        }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+        }
+
+        .logo-frame {
+            width: 100%;
+            border-radius: 28px;
+            padding: 18px;
+            background:
+                radial-gradient(circle at 50% 18%, rgba(77, 227, 255, 0.18), transparent 28%),
+                linear-gradient(180deg, rgba(8, 14, 24, 0.98), rgba(10, 18, 31, 0.92));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 430px;
+        }
+
+        .logo-frame img {
+            width: min(100%, 430px);
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 44px rgba(0, 0, 0, 0.48));
+        }
+
+        .section {
+            margin-top: 24px;
+            padding: 28px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #d8ebff;
+            font-size: 0.82rem;
+            margin-bottom: 12px;
+        }
+
+        .section-head p {
+            margin-top: 8px;
+            color: var(--muted);
+            max-width: 62ch;
+            line-height: 1.75;
+        }
+
+        .app-layout {
+            display: grid;
+            grid-template-columns: 164px minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .app-logo {
+            width: 164px;
+            height: 164px;
+            border-radius: 30px;
+            overflow: hidden;
+            background: var(--panel-soft);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-card {
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .app-intro p {
+            margin-top: 10px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .app-highlight {
+            display: inline-flex;
+            margin-top: 14px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(77, 227, 255, 0.1);
+            color: #b8f8ff;
+            font-size: 0.84rem;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .info-card {
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .info-card strong {
+            display: block;
+            font-size: 0.98rem;
+        }
+
+        .info-card span {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.93rem;
+            line-height: 1.65;
+        }
+
+        .app-actions {
+            margin-top: 22px;
         }
 
         .footer {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.55;
-            line-height: 1.6;
+            margin-top: 22px;
+            padding: 6px 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 0.92rem;
         }
 
         .footer a {
             color: #ffffff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 960px) {
+            .hero,
+            .app-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(100% - 24px, 1120px);
+                padding-top: 18px;
+            }
+
+            .topbar,
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero,
+            .section {
+                padding: 22px;
+            }
+
+            .logo-frame {
+                min-height: 300px;
+            }
+
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Rico Code</h1>
-        <p>Developpement d'applications mobiles innovantes.</p>
-        <div class="actions">
-            <a href="app-ads.txt" class="btn">Fichier app-ads.txt</a>
-            <a href="privacy-policy.html" class="btn">Privacy Policy</a>
-        </div>
-        <div class="footer">
-            Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a><br>
-            &copy; 2026 Rico Code | Heberge sur GitHub Pages
-        </div>
-    </div>
+    <main class="page">
+        <header class="topbar">
+            <a class="brand" href="index.html" aria-label="Rico Code accueil">
+                <span class="brand-badge">
+                    <img src="image/10561.png" alt="Logo Rico Code">
+                </span>
+                <span class="brand-copy">
+                    <strong>RICO CODE</strong>
+                    <span>Studio mobile independant</span>
+                </span>
+            </a>
+
+            <nav class="nav-actions" aria-label="Liens principaux">
+                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir mes apps</a>
+                <a href="app-ads.txt" class="btn" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
+                <a href="privacy-policy.html" class="btn">Privacy Policy</a>
+            </nav>
+        </header>
+
+        <section class="hero surface">
+            <div class="hero-copy">
+                <div class="eyebrow">Studio Android</div>
+                <h1>Des apps plus nettes, plus utiles, plus pro.</h1>
+                <p>
+                    Rico Code imagine des applications mobiles claires, rapides et bien pensees.
+                    Cette page presente le studio de facon plus propre, avec une vraie mise en avant de l'identite visuelle et des applications.
+                </p>
+                <div class="hero-actions">
+                    <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir mes apps</a>
+                    <a href="#hippique-simu" class="btn">Voir Hippique Simu</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="logo-frame">
+                    <img src="image/10561.png" alt="Logo Rico Code">
+                </div>
+            </div>
+        </section>
+
+        <section id="hippique-simu" class="section surface">
+            <div class="section-head">
+                <div>
+                    <div class="section-tag">Mes applications</div>
+                    <h2>Hippique Simu</h2>
+                    <p>
+                        Une presentation plus sobre et plus lisible de l'application, avec l'essentiel mis en avant sans surcharger la page.
+                    </p>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
+            </div>
+
+            <div class="app-layout">
+                <div class="app-logo">
+                    <img src="image/hippsimu.png" alt="Logo Hippique Simu">
+                </div>
+
+                <div class="app-card">
+                    <div class="app-intro">
+                        <h3>Hippique Simu : Simulation Turf</h3>
+                        <p>
+                            Une application dediee aux passionnes de courses hippiques pour suivre les courses du jour,
+                            simuler des paris, tester leurs strategies et progresser dans un environnement mobile fluide.
+                        </p>
+                        <div class="app-highlight">Analyse, simulation, competition</div>
+                    </div>
+
+                    <div class="app-grid">
+                        <div class="info-card">
+                            <strong>Courses du jour</strong>
+                            <span>Reunions, hippodromes, partants et cotes disponibles rapidement.</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Simulateur complet</strong>
+                            <span>Paris simples et combines avec estimation immediate des gains.</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Deux modes</strong>
+                            <span>Entrainement pour progresser et competition pour se comparer aux autres joueurs.</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Experience mobile</strong>
+                            <span>Interface rapide, favoris, alertes cotes, cloud et personnalisation du profil.</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir l'application</a>
+                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn" target="_blank" rel="noopener noreferrer">Voir mes apps</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div>Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
+            <div class="footer-links">
+                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank" rel="noopener noreferrer">Mes applications</a>
+                <a href="app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </footer>
+    </main>
 </body>
 </html>
