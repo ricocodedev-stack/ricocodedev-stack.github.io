@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,6 +143,74 @@
             box-shadow: 0 12px 26px rgba(77, 227, 255, 0.12);
         }
 
+        .menu {
+            position: relative;
+            flex: 0 0 auto;
+        }
+
+        .menu summary {
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .menu summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .menu summary::after {
+            content: "⌄";
+            margin-left: 10px;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .menu[open] summary::after {
+            content: "⌃";
+        }
+
+        .menu-panel {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            z-index: 5;
+            min-width: 260px;
+            padding: 10px;
+            border-radius: 16px;
+            background: rgba(7, 16, 27, 0.96);
+            border: 1px solid var(--border);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
+            backdrop-filter: blur(16px);
+        }
+
+        .menu-group+.menu-group {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .menu-title {
+            display: block;
+            padding: 6px 12px 8px;
+            color: var(--muted);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .menu-panel a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .menu-panel a:hover {
+            background: rgba(77, 227, 255, 0.1);
+        }
+
         .surface {
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
             border: 1px solid var(--border);
@@ -151,15 +220,42 @@
         }
 
         .hero {
-            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            padding: 28px 28px 28px 28px;
             display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+            grid-template-columns: 1fr;
             gap: 24px;
             align-items: center;
         }
 
+        .hero>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: none;
+            position: absolute;
+            inset: 0;
+            background: none;
+            z-index: 0;
+        }
+
+        .hero-bg-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            z-index: 0;
+        }
+
         .hero-copy {
-            padding: 8px 4px;
+            padding: 8px 4px 8px 0;
+            max-width: 560px;
+            margin-left: -14px;
         }
 
         .eyebrow {
@@ -186,47 +282,19 @@
             font-size: clamp(2.7rem, 6vw, 5.2rem);
             line-height: 0.95;
             letter-spacing: -0.06em;
-            max-width: 8ch;
+            max-width: 11ch;
         }
 
         .hero p {
             margin-top: 18px;
-            max-width: 58ch;
+            max-width: 42ch;
             color: var(--muted);
-            line-height: 1.8;
+            line-height: 1.62;
             font-size: 1.02rem;
         }
 
         .hero-actions {
             margin-top: 24px;
-        }
-
-        .hero-visual {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100%;
-        }
-
-        .logo-frame {
-            width: 100%;
-            border-radius: 28px;
-            padding: 18px;
-            background:
-                radial-gradient(circle at 50% 18%, rgba(77, 227, 255, 0.18), transparent 28%),
-                linear-gradient(180deg, rgba(8, 14, 24, 0.98), rgba(10, 18, 31, 0.92));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 430px;
-        }
-
-        .logo-frame img {
-            width: min(100%, 430px);
-            aspect-ratio: 1 / 1;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 44px rgba(0, 0, 0, 0.48));
         }
 
         .section {
@@ -277,17 +345,54 @@
             box-shadow: 0 18px 38px rgba(0, 0, 0, 0.3);
         }
 
-        .app-logo img {
+        .app-logo img,
+        .app-logo video {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
         .app-card {
-            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            padding: 24px 24px 24px 20px;
             border-radius: var(--radius-lg);
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .app-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .app-card-video {
+            background: rgba(3, 12, 18, 0.72);
+        }
+
+        .app-card-video::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(4, 10, 16, 0.7), rgba(4, 10, 16, 0.28)),
+                linear-gradient(180deg, rgba(4, 10, 16, 0.08), rgba(4, 10, 16, 0.52));
+            z-index: 0;
+        }
+
+        .app-card-video .card-bg-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.92;
+            z-index: 0;
+        }
+
+        .app-card-video .info-card {
+            background: rgba(3, 12, 18, 0.58);
+            backdrop-filter: blur(8px);
         }
 
         .app-intro p {
@@ -355,6 +460,7 @@
         }
 
         @media (max-width: 960px) {
+
             .hero,
             .app-layout {
                 grid-template-columns: 1fr;
@@ -377,13 +483,14 @@
                 align-items: flex-start;
             }
 
+            .menu-panel {
+                left: 0;
+                right: auto;
+            }
+
             .hero,
             .section {
                 padding: 22px;
-            }
-
-            .logo-frame {
-                min-height: 300px;
             }
 
             .app-grid {
@@ -392,6 +499,7 @@
         }
     </style>
 </head>
+
 <body>
     <main class="page">
         <header class="topbar">
@@ -406,29 +514,112 @@
             </a>
 
             <nav class="nav-actions" aria-label="Liens principaux">
-                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir mes applications</a>
-                <a href="app-ads.txt" class="btn" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
-                <a href="privacy-policy.html" class="btn">Confidentialité</a>
+                <details class="menu">
+                    <summary class="btn btn-primary">Menu</summary>
+                    <div class="menu-panel">
+                        <div class="menu-group">
+                            <span class="menu-title">Applications</span>
+                            <a href="#essence-predict">Essence Predict</a>
+                            <a href="#hippique-simu">Hippique Simu</a>
+                            <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank"
+                                rel="noopener noreferrer">Toutes les apps</a>
+                        </div>
+                        <div class="menu-group">
+                            <span class="menu-title">Documents</span>
+                            <a href="privacy-policy.html">Confidentialité</a>
+                            <a href="app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
+                        </div>
+                    </div>
+                </details>
             </nav>
         </header>
 
         <section class="hero surface">
+            <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="image/studio-android-bg.mp4" type="video/mp4">
+            </video>
             <div class="hero-copy">
                 <div class="eyebrow">Studio Android</div>
-                <h1>Des applications claires, utiles et soignées.</h1>
+                <h1>Des apps <br>utiles pour <br>décider <br>plus vite.</h1>
                 <p>
-                    Rico Code conçoit des applications Android simples à utiliser, rapides et pensées pour aller à l'essentiel.
-                    Le studio développe des outils mobiles avec une interface lisible, une navigation fluide et une identité visuelle cohérente.
+                    Rico Code développe des applications Android pratiques, rapides et faciles à prendre en main.
+                    De la simulation hippique à la comparaison des prix du carburant, chaque outil aide à gagner du
+                    temps, comparer clairement et faire de meilleurs choix au quotidien.
                 </p>
                 <div class="hero-actions">
-                    <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir mes applications</a>
+                    <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
+                        target="_blank" rel="noopener noreferrer">Voir mes applications</a>
+                    <a href="#essence-predict" class="btn">Voir Essence Predict</a>
                     <a href="#hippique-simu" class="btn">Voir Hippique Simu</a>
                 </div>
             </div>
+        </section>
 
-            <div class="hero-visual">
-                <div class="logo-frame">
-                    <img src="image/10561.png" alt="Logo Rico Code">
+        <section id="essence-predict" class="section surface">
+            <div class="section-head">
+                <div>
+                    <div class="section-tag">Nouvelle application</div>
+                    <h2>Essence Predict</h2>
+                    <p>
+                        Un comparateur carburant intelligent pour anticiper les prix, choisir le bon moment pour faire
+                        le plein
+                        et trouver les stations rentables autour de vous.
+                    </p>
+                </div>
+                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
+                    target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
+            </div>
+
+            <div class="app-layout">
+                <div class="app-logo">
+                    <video autoplay muted loop playsinline preload="metadata" aria-label="Aperçu vidéo Essence Predict">
+                        <source src="image/essence-predict-bg.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="app-card app-card-video">
+                    <video class="card-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                        <source src="image/essence-predict-bg.mp4" type="video/mp4">
+                    </video>
+                    <div class="app-intro">
+                        <h3>Essence Predict : Comparateur</h3>
+                        <p>
+                            Essence Predict aide les conducteurs à reprendre le contrôle sur leur budget carburant grâce
+                            aux
+                            tendances de prix, aux données communautaires et aux calculs d'économie personnalisés.
+                        </p>
+                        <div class="app-highlight">Prévision, comparaison, économie réelle</div>
+                    </div>
+
+                    <div class="app-grid">
+                        <div class="info-card">
+                            <strong>Prévisions à 7 jours</strong>
+                            <span>Anticipez les hausses et les baisses pour savoir s'il vaut mieux attendre ou faire le
+                                plein maintenant.</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Calculatrice d'économie</strong>
+                            <span>Renseignez votre réservoir de 20L à 120L et visualisez l'économie ou le surcoût des
+                                prochains jours.</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Trajet rentable</strong>
+                            <span>Le calculateur tient compte du détour et de votre consommation pour indiquer si la
+                                station vaut vraiment le déplacement.</span>
+                        </div>
+                        <div class="info-card">
+                            <strong>Couverture européenne</strong>
+                            <span>France, Allemagne, Espagne, Italie et Portugal avec carte interactive, recherche
+                                étendue et navigation GPS.</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
+                            target="_blank" rel="noopener noreferrer">Voir l'application</a>
+                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn" target="_blank"
+                            rel="noopener noreferrer">Voir mes applications</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -439,23 +630,31 @@
                     <div class="section-tag">Mes applications</div>
                     <h2>Hippique Simu</h2>
                     <p>
-                        Une application dédiée à la simulation et au suivi des courses hippiques, pensée pour s'entraîner, comparer ses choix et progresser.
+                        Une application dédiée à la simulation et au suivi des courses hippiques, pensée pour
+                        s'entraîner, comparer ses choix et progresser.
                     </p>
                 </div>
-                <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
+                <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" class="btn btn-primary"
+                    target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
             </div>
 
             <div class="app-layout">
                 <div class="app-logo">
-                    <img src="image/hippsimu.png" alt="Logo Hippique Simu">
+                    <video autoplay muted loop playsinline preload="metadata" aria-label="Aperçu vidéo Hippique Simu">
+                        <source src="image/hippique-simu-bg.mp4" type="video/mp4">
+                    </video>
                 </div>
 
-                <div class="app-card">
+                <div class="app-card app-card-video">
+                    <video class="card-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                        <source src="image/hippique-simu-bg.mp4" type="video/mp4">
+                    </video>
                     <div class="app-intro">
                         <h3>Hippique Simu : Simulation Turf</h3>
                         <p>
                             Une application dédiée aux passionnés de courses hippiques pour suivre les courses du jour,
-                            simuler des paris, tester leurs stratégies et progresser dans un environnement mobile fluide.
+                            simuler des paris, tester leurs stratégies et progresser dans un environnement mobile
+                            fluide.
                         </p>
                         <div class="app-highlight">Analyse, simulation, compétition</div>
                     </div>
@@ -471,7 +670,8 @@
                         </div>
                         <div class="info-card">
                             <strong>Deux modes</strong>
-                            <span>Entraînement pour progresser et compétition pour se comparer aux autres joueurs.</span>
+                            <span>Entraînement pour progresser et compétition pour se comparer aux autres
+                                joueurs.</span>
                         </div>
                         <div class="info-card">
                             <strong>Expérience mobile</strong>
@@ -480,8 +680,10 @@
                     </div>
 
                     <div class="app-actions">
-                        <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir l'application</a>
-                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn" target="_blank" rel="noopener noreferrer">Voir mes applications</a>
+                        <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf"
+                            class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir l'application</a>
+                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn" target="_blank"
+                            rel="noopener noreferrer">Voir mes applications</a>
                     </div>
                 </div>
             </div>
@@ -490,11 +692,14 @@
         <footer class="footer">
             <div>Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
             <div class="footer-links">
-                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank" rel="noopener noreferrer">Mes applications</a>
+                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank"
+                    rel="noopener noreferrer">Mes applications</a>
+                <a href="#essence-predict">Essence Predict</a>
                 <a href="app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
                 <a href="privacy-policy.html">Confidentialité</a>
             </div>
         </footer>
     </main>
 </body>
+
 </html>
