@@ -1,807 +1,636 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rico Code - Studio indépendant spécialisé dans les applications Android.">
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <meta name="theme-color" content="#07101b">
-    <link rel="canonical" href="https://ricocodedev-stack.github.io/">
-    <meta property="og:site_name" content="Rico Code">
-    <meta property="og:title" content="Rico Code - Applications Android">
-    <meta property="og:description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ricocodedev-stack.github.io/">
-    <meta property="og:image" content="https://ricocodedev-stack.github.io/image/10561.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Rico Code - Applications Android">
-    <meta name="twitter:description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
-    <meta name="twitter:image" content="https://ricocodedev-stack.github.io/image/10561.png">
-    <title>Rico Code - Applications Android</title>
-    <style>
-        :root {
-            --bg: #07101b;
-            --bg-soft: #0c1727;
-            --panel: rgba(10, 18, 31, 0.82);
-            --panel-soft: rgba(255, 255, 255, 0.04);
-            --border: rgba(255, 255, 255, 0.1);
-            --text: #f4f8ff;
-            --muted: rgba(244, 248, 255, 0.7);
-            --accent: #4de3ff;
-            --accent-2: #5a8cff;
-            --shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
-            --radius-xl: 32px;
-            --radius-lg: 22px;
-            --radius-md: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(circle at top, rgba(77, 227, 255, 0.12), transparent 28%),
-                linear-gradient(180deg, #040913 0%, #08111d 52%, #091321 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-            background-size: 70px 70px;
-            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 92%);
-        }
-
-        a {
-            color: inherit;
-        }
-
-        .page {
-            position: relative;
-            width: min(1120px, calc(100% - 32px));
-            margin: 0 auto;
-            padding: 26px 0 40px;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 26px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-        }
-
-        .brand-badge {
-            width: 58px;
-            height: 58px;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.34);
-            flex: 0 0 auto;
-        }
-
-        .brand-badge img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .brand-copy strong {
-            display: block;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-        }
-
-        .brand-copy span {
-            display: block;
-            margin-top: 4px;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .nav-actions,
-        .hero-actions,
-        .app-actions,
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 46px;
-            padding: 0.86rem 1.16rem;
-            border-radius: 14px;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text);
-            font-weight: 700;
-            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-1px);
-            border-color: rgba(77, 227, 255, 0.4);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, rgba(77, 227, 255, 0.2), rgba(90, 140, 255, 0.18));
-            border-color: rgba(77, 227, 255, 0.32);
-            box-shadow: 0 12px 26px rgba(77, 227, 255, 0.12);
-        }
-
-        .menu {
-            position: relative;
-            flex: 0 0 auto;
-        }
-
-        .menu summary {
-            list-style: none;
-            cursor: pointer;
-        }
-
-        .menu summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .menu summary::after {
-            content: "⌄";
-            margin-left: 10px;
-            font-size: 1rem;
-            line-height: 1;
-        }
-
-        .menu[open] summary::after {
-            content: "⌃";
-        }
-
-        .menu-panel {
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            z-index: 5;
-            min-width: 260px;
-            max-width: calc(100vw - 32px);
-            padding: 10px;
-            border-radius: 16px;
-            background: rgba(7, 16, 27, 0.96);
-            border: 1px solid var(--border);
-            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36);
-            backdrop-filter: blur(16px);
-        }
-
-        .menu-group+.menu-group {
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .menu-title {
-            display: block;
-            padding: 6px 12px 8px;
-            color: var(--muted);
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .menu-panel a {
-            display: block;
-            padding: 12px 14px;
-            border-radius: 10px;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .menu-panel a:hover {
-            background: rgba(77, 227, 255, 0.1);
-        }
-
-        .surface {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(18px);
-        }
-
-        .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 28px 28px 28px 28px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .hero>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero::after {
-            content: none;
-            position: absolute;
-            inset: 0;
-            background: none;
-            z-index: 0;
-        }
-
-        .hero-bg-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-            z-index: 0;
-        }
-
-        .hero-copy {
-            padding: 8px 4px 8px 0;
-            max-width: 560px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(77, 227, 255, 0.1);
-            color: #b4f7ff;
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-
-        h1,
-        h2,
-        h3,
-        p {
-            margin: 0;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.7rem, 6vw, 5.2rem);
-            line-height: 0.95;
-            letter-spacing: -0.06em;
-            max-width: 11ch;
-        }
-
-        .hero p {
-            margin-top: 18px;
-            max-width: 42ch;
-            color: var(--muted);
-            line-height: 1.62;
-            font-size: 1.02rem;
-        }
-
-        .hero-actions {
-            margin-top: 24px;
-        }
-
-        .section {
-            margin-top: 24px;
-            padding: 28px;
-        }
-
-        .section-head {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 18px;
-            margin-bottom: 22px;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.06);
-            color: #d8ebff;
-            font-size: 0.82rem;
-            margin-bottom: 12px;
-        }
-
-        .section-head p {
-            margin-top: 8px;
-            color: var(--muted);
-            max-width: 62ch;
-            line-height: 1.75;
-        }
-
-        .app-layout {
-            display: grid;
-            grid-template-columns: 164px minmax(0, 1fr);
-            gap: 22px;
-            align-items: start;
-        }
-
-        .app-logo {
-            width: 164px;
-            height: 164px;
-            border-radius: 30px;
-            overflow: hidden;
-            background: var(--panel-soft);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 18px 38px rgba(0, 0, 0, 0.3);
-        }
-
-        .app-logo img,
-        .app-logo video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .app-card {
-            position: relative;
-            overflow: hidden;
-            padding: 24px 24px 24px 20px;
-            border-radius: var(--radius-lg);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .app-card>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        .app-card-video {
-            background: rgba(3, 12, 18, 0.72);
-        }
-
-        .app-card-video::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, rgba(4, 10, 16, 0.7), rgba(4, 10, 16, 0.28)),
-                linear-gradient(180deg, rgba(4, 10, 16, 0.08), rgba(4, 10, 16, 0.52));
-            z-index: 0;
-        }
-
-        .app-card-video .card-bg-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.92;
-            z-index: 0;
-        }
-
-        .app-card-video .info-card {
-            background: rgba(3, 12, 18, 0.58);
-            backdrop-filter: blur(8px);
-        }
-
-        .app-intro p {
-            margin-top: 10px;
-            color: var(--muted);
-            line-height: 1.8;
-        }
-
-        .app-highlight {
-            display: inline-flex;
-            margin-top: 14px;
-            padding: 8px 12px;
-            border-radius: 999px;
-            background: rgba(77, 227, 255, 0.1);
-            color: #b8f8ff;
-            font-size: 0.84rem;
-        }
-
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 22px;
-        }
-
-        .info-card {
-            padding: 16px;
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-
-        .info-card strong {
-            display: block;
-            font-size: 0.98rem;
-        }
-
-        .info-card span {
-            display: block;
-            margin-top: 6px;
-            color: var(--muted);
-            font-size: 0.93rem;
-            line-height: 1.65;
-        }
-
-        .app-actions {
-            margin-top: 22px;
-        }
-
-        .footer {
-            margin-top: 22px;
-            padding: 6px 8px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .footer a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        @media (max-width: 960px) {
-
-            .hero,
-            .app-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                max-width: none;
-            }
-
-            .app-logo {
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .page {
-                width: min(100% - 20px, 1120px);
-                padding-top: 18px;
-            }
-
-            .topbar,
-            .section-head {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 14px;
-            }
-
-            .menu-panel {
-                left: 0;
-                right: auto;
-                min-width: 220px;
-            }
-
-            .hero,
-            .section {
-                padding: 18px;
-            }
-
-            .hero {
-                min-height: 640px;
-                align-items: end;
-                padding-top: 300px;
-                padding-bottom: 24px;
-            }
-
-            .hero-bg-video {
-                height: 300px;
-                object-position: center top;
-            }
-
-            .hero-copy {
-                padding-top: 0;
-            }
-
-            .eyebrow {
-                margin-bottom: 14px;
-            }
-
-            .hero h1 {
-                font-size: clamp(1.9rem, 7.4vw, 2.5rem);
-                line-height: 1;
-            }
-
-            .hero p {
-                margin-top: 14px;
-                font-size: 0.98rem;
-            }
-
-            .app-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-actions,
-            .app-actions {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .hero-actions .btn,
-            .app-actions .btn {
-                width: 100%;
-            }
-
-            .app-logo {
-                width: 140px;
-                height: 140px;
-                border-radius: 24px;
-            }
-
-            .footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-        }
-    </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "name": "Rico Code",
-          "url": "https://ricocodedev-stack.github.io/",
-          "logo": "https://ricocodedev-stack.github.io/image/10561.png",
-          "sameAs": [
-            "https://play.google.com/store/apps/developer?id=Rico+Code"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "name": "Rico Code",
-          "url": "https://ricocodedev-stack.github.io/",
-          "description": "Studio indépendant spécialisé dans les applications Android."
-        },
-        {
-          "@type": "ItemList",
-          "name": "Applications Rico Code",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "url": "https://ricocodedev-stack.github.io/essence-predict.html",
-              "name": "Essence Predict"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "url": "https://ricocodedev-stack.github.io/hippique-simu.html",
-              "name": "Hippique Simu"
-            }
-          ]
-        }
-      ]
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rico Code — Applications Android</title>
+  <meta name="description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#07101b">
+  <link rel="canonical" href="https://ricocodedev-stack.github.io/">
+  <meta property="og:site_name" content="Rico Code">
+  <meta property="og:title" content="Rico Code - Applications Android">
+  <meta property="og:description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ricocodedev-stack.github.io/">
+  <meta property="og:image" content="https://ricocodedev-stack.github.io/image/10561.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rico Code - Applications Android">
+  <meta name="twitter:description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
+  <meta name="twitter:image" content="https://ricocodedev-stack.github.io/image/10561.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #06101c;
+      --bg-2:      #080f1a;
+      --surface:   rgba(12, 20, 34, 0.80);
+      --border:    rgba(255,255,255,0.08);
+      --border-hi: rgba(77,227,255,0.28);
+      --text:      #eef3fc;
+      --muted:     rgba(200,215,240,0.62);
+      --accent:    #4de3ff;
+      --accent-2:  #5a8cff;
+      --accent-3:  #9d65ff;
+      --r-xl: 28px;
+      --r-lg: 20px;
+      --r-md: 14px;
     }
-    </script>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── grain overlay ── */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(ellipse 80% 40% at 50% -10%, rgba(77,227,255,0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 30% at 90% 60%, rgba(90,140,255,0.07) 0%, transparent 60%);
+    }
+
+    /* ── layout ── */
+    .wrap {
+      position: relative; z-index: 1;
+      width: min(960px, 100% - 40px);
+      margin: 0 auto;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(6,16,28,0.82);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      height: 64px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text);
+    }
+    .logo-img {
+      width: 36px; height: 36px; border-radius: 10px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .logo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1rem; letter-spacing: 0.06em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      display: block; padding: 8px 14px; border-radius: 10px;
+      text-decoration: none; color: var(--muted);
+      font-size: 0.92rem; font-weight: 500;
+      transition: color 0.18s, background 0.18s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-links a.active { color: var(--accent); }
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(77,227,255,0.18), rgba(90,140,255,0.15));
+      border: 1px solid rgba(77,227,255,0.30);
+      color: var(--text); font-weight: 700; font-size: 0.88rem;
+      text-decoration: none;
+      transition: transform 0.18s, border-color 0.18s;
+    }
+    .btn-nav:hover { transform: translateY(-1px); border-color: rgba(77,227,255,0.55); }
+    .nav-burger { display: none; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 90px 0 80px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+      gap: 42px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(77,227,255,0.10);
+      border: 1px solid rgba(77,227,255,0.20);
+      color: #a8f3ff; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow span.dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.7); }
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      margin-top: 22px;
+      color: var(--muted); font-size: 1.05rem; line-height: 1.70;
+      max-width: 44ch;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 24px; border-radius: var(--r-md);
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      border: 1px solid var(--border); transition: transform 0.18s, border-color 0.18s, background 0.18s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(77,227,255,0.22), rgba(90,140,255,0.18));
+      border-color: rgba(77,227,255,0.35);
+      color: var(--text);
+    }
+    .btn-primary:hover { transform: translateY(-2px); border-color: rgba(77,227,255,0.60); box-shadow: 0 8px 28px rgba(77,227,255,0.15); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--text); transform: translateY(-1px); }
+
+    /* hero visual */
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      justify-self: end;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      aspect-ratio: 5/4;
+      border: 1px solid var(--border);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+    .hero-visual video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(6,16,28,0.18), rgba(6,16,28,0.55));
+    }
+    .hero-badge {
+      position: absolute; bottom: 20px; left: 20px; z-index: 2;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 16px; border-radius: 14px;
+      background: rgba(6,16,28,0.76); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+    .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+    .hero-badge span { font-size: 0.84rem; font-weight: 600; color: var(--text); }
+
+    /* ── STATS BAND ── */
+    .stats-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
+      margin-top: 0;
+    }
+    .stats-inner {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    }
+    .stat {
+      text-align: center; padding: 10px 20px;
+    }
+    .stat + .stat { border-left: 1px solid var(--border); }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.4rem; font-weight: 800; letter-spacing: -0.04em;
+      background: linear-gradient(120deg, var(--text), var(--muted));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label { color: var(--muted); font-size: 0.84rem; margin-top: 4px; }
+
+    /* ── SECTION TITLE ── */
+    .section { padding: 80px 0; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--accent); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: ""; width: 20px; height: 1px; background: var(--accent); opacity: 0.6;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1.08;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 1rem; line-height: 1.7; margin-top: 14px; max-width: 52ch;
+    }
+
+    /* ── APPS GRID ── */
+    .apps-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 48px auto 0;
+      max-width: 900px;
+    }
+    .app-card {
+      position: relative; overflow: hidden;
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+      text-decoration: none; color: var(--text);
+      display: flex; flex-direction: column;
+    }
+    .app-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-hi);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.40);
+    }
+    .app-card-media {
+      position: relative; aspect-ratio: 4/3; overflow: hidden;
+    }
+    .app-card-media video, .app-card-media img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .app-card-media::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(8,15,26,0.85));
+    }
+    .app-card-tag {
+      position: absolute; top: 16px; left: 16px; z-index: 2;
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .tag-new { background: rgba(77,227,255,0.18); border: 1px solid rgba(77,227,255,0.30); color: #a8f3ff; }
+    .tag-app { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.15); color: var(--text); }
+    .app-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    .app-card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em;
+    }
+    .app-card-desc { color: var(--muted); font-size: 0.94rem; line-height: 1.65; flex: 1; }
+    .app-card-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .pill {
+      padding: 5px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--muted); font-weight: 500;
+    }
+    .app-card-cta {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 8px; padding-top: 18px; border-top: 1px solid var(--border);
+      color: var(--accent); font-weight: 700; font-size: 0.9rem;
+    }
+    .app-card-cta svg { transition: transform 0.18s; }
+    .app-card:hover .app-card-cta svg { transform: translateX(4px); }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 42px;
+      align-items: center; margin-top: 48px;
+    }
+    .about-text p { color: var(--muted); font-size: 1rem; line-height: 1.80; margin-top: 16px; }
+    .about-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .about-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.18s;
+    }
+    .about-card:hover { border-color: rgba(77,227,255,0.22); }
+    .about-card-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; font-size: 1.2rem;
+    }
+    .about-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.96rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .about-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.60; }
+
+    /* ── CONTACT BAND ── */
+    .contact-band {
+      border-radius: var(--r-xl);
+      padding: 64px 56px;
+      background: linear-gradient(135deg, rgba(12,20,34,0.9), rgba(8,15,26,0.95));
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; gap: 40px;
+      position: relative; overflow: hidden;
+    }
+    .contact-band::before {
+      content: "";
+      position: absolute; top: -60px; right: -60px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(77,227,255,0.10), transparent 70%);
+      pointer-events: none;
+    }
+    .contact-band h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800; letter-spacing: -0.03em;
+    }
+    .contact-band p { color: var(--muted); font-size: 0.98rem; line-height: 1.65; margin-top: 10px; max-width: 42ch; }
+    .contact-actions { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .footer-copy { color: var(--muted); font-size: 0.88rem; }
+    .footer-copy a { color: var(--text); text-decoration: none; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px; }
+    .footer-links a {
+      padding: 6px 12px; border-radius: 8px;
+      color: var(--muted); font-size: 0.88rem; text-decoration: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .footer-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
+      .hero-visual { aspect-ratio: 4/3; max-width: 100%; justify-self: stretch; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat + .stat { border-left: none; border-top: 1px solid var(--border); }
+      .apps-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .contact-band { flex-direction: column; padding: 40px 28px; align-items: flex-start; }
+      .contact-actions { flex-direction: row; flex-wrap: wrap; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Rico Code",
+        "url": "https://ricocodedev-stack.github.io/",
+        "logo": "https://ricocodedev-stack.github.io/image/10561.png",
+        "sameAs": [
+          "https://play.google.com/store/apps/developer?id=Rico+Code"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "Rico Code",
+        "url": "https://ricocodedev-stack.github.io/",
+        "description": "Studio independant specialise dans les applications Android."
+      },
+      {
+        "@type": "ItemList",
+        "name": "Applications Rico Code",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://ricocodedev-stack.github.io/essence-predict.html",
+            "name": "Essence Predict"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://ricocodedev-stack.github.io/hippique-simu.html",
+            "name": "Hippique Simu"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
-
 <body>
-    <main class="page">
-        <header class="topbar">
-            <a class="brand" href="index.html" aria-label="Rico Code accueil">
-                <span class="brand-badge">
-                    <img src="image/10561.png" alt="Logo Rico Code">
-                </span>
-                <span class="brand-copy">
-                    <strong>RICO CODE</strong>
-                    <span>Studio mobile indépendant</span>
-                </span>
-            </a>
 
-            <nav class="nav-actions" aria-label="Liens principaux">
-                <details class="menu">
-                    <summary class="btn btn-primary">Menu</summary>
-                    <div class="menu-panel">
-                        <div class="menu-group">
-                            <span class="menu-title">Applications</span>
-                            <a href="essence-predict.html">Essence Predict</a>
-                            <a href="hippique-simu.html">Hippique Simu</a>
-                            <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank"
-                                rel="noopener noreferrer">Toutes les apps</a>
-                        </div>
-                        <div class="menu-group">
-                            <span class="menu-title">Documents</span>
-                            <a href="privacy-policy.html">Confidentialité</a>
-                            <a href="app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
-                        </div>
-                    </div>
-                </details>
-            </nav>
-        </header>
+<!-- ── NAV ── -->
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-img"><img src="image/10561.png" alt="Rico Code"></span>
+      <span class="logo-name">RICO CODE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="essence-predict.html">Essence Predict</a></li>
+      <li><a href="hippique-simu.html">Hippique Simu</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn-nav" href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+      Google Play
+    </a>
+  </div>
+</nav>
 
-        <section class="hero surface">
-            <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                <source src="image/studio-android-bg.mp4" type="video/mp4">
-            </video>
-            <div class="hero-copy">
-                <div class="eyebrow">Studio Android</div>
-                <h1>Des apps <br>utiles pour <br>décider <br>plus vite.</h1>
-                <p>
-                    Rico Code développe des applications Android pratiques, rapides et faciles à prendre en main.
-                    De la simulation hippique à la comparaison des prix du carburant, chaque outil aide à gagner du
-                    temps, comparer clairement et faire de meilleurs choix au quotidien.
-                </p>
-            </div>
-        </section>
+<!-- ── HERO ── -->
+<section style="padding-top: 0;">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Studio Android indépendant
+      </div>
+      <h1>Des apps <em>utiles</em><br>pour décider<br>plus vite.</h1>
+      <p class="hero-sub">
+        Rico Code conçoit des applications Android pratiques et rapides à prendre en main — de la comparaison carburant à la simulation hippique, chaque outil aide à gagner du temps et faire de meilleurs choix.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#apps">Voir les applications</a>
+        <a class="btn btn-ghost" href="contact.html">Me contacter</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="image/studio-android-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Disponible sur Google Play</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="essence-predict" class="section surface">
-            <div class="section-head">
-                <div>
-                    <div class="section-tag">Nouvelle application</div>
-                    <h2>Essence Predict</h2>
-                    <p>
-                        Un comparateur carburant intelligent pour anticiper les prix, choisir le bon moment pour faire
-                        le plein
-                        et trouver les stations rentables autour de vous.
-                    </p>
-                </div>
-                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
-                    target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
-            </div>
+<!-- ── STATS ── -->
+<div class="stats-band">
+  <div class="wrap">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Applications publiées</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Pays couverts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Indépendant</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <div class="app-layout">
-                <div class="app-logo">
-                    <video autoplay muted loop playsinline preload="metadata" aria-label="Aperçu vidéo Essence Predict">
-                        <source src="image/essence-predict-bg.mp4" type="video/mp4">
-                    </video>
-                </div>
+<!-- ── APPS ── -->
+<section class="section" id="apps">
+  <div class="wrap">
+    <div class="section-label">Applications</div>
+    <h2 class="section-title">Mes créations</h2>
+    <p class="section-sub">Des outils du quotidien pensés pour être simples, rapides et vraiment utiles.</p>
 
-                <div class="app-card app-card-video">
-                    <video class="card-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                        <source src="image/essence-predict-bg.mp4" type="video/mp4">
-                    </video>
-                    <div class="app-intro">
-                        <h3>Essence Predict : Comparateur</h3>
-                        <p>
-                            Essence Predict aide les conducteurs à reprendre le contrôle sur leur budget carburant grâce
-                            aux
-                            tendances de prix, aux données communautaires et aux calculs d'économie personnalisés.
-                        </p>
-                        <div class="app-highlight">Prévision, comparaison, économie réelle</div>
-                    </div>
+    <div class="apps-grid">
 
-                    <div class="app-grid">
-                        <div class="info-card">
-                            <strong>Prévisions à 7 jours</strong>
-                            <span>Anticipez les hausses et les baisses pour savoir s'il vaut mieux attendre ou faire le
-                                plein maintenant.</span>
-                        </div>
-                        <div class="info-card">
-                            <strong>Calculatrice d'économie</strong>
-                            <span>Renseignez votre réservoir de 20L à 120L et visualisez l'économie ou le surcoût des
-                                prochains jours.</span>
-                        </div>
-                        <div class="info-card">
-                            <strong>Trajet rentable</strong>
-                            <span>Le calculateur tient compte du détour et de votre consommation pour indiquer si la
-                                station vaut vraiment le déplacement.</span>
-                        </div>
-                        <div class="info-card">
-                            <strong>Couverture européenne</strong>
-                            <span>France, Allemagne, Espagne, Italie et Portugal avec carte interactive, recherche
-                                étendue et navigation GPS.</span>
-                        </div>
-                    </div>
+      <!-- Essence Predict -->
+      <a class="app-card" href="essence-predict.html">
+        <div class="app-card-media">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="image/essence-predict-bg.mp4" type="video/mp4">
+          </video>
+          <span class="app-card-tag tag-new">Nouveauté</span>
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-name">Essence Predict</div>
+          <div class="app-card-desc">Anticipez les prix du carburant, trouvez les stations les plus rentables et calculez vos vraies économies sur chaque trajet.</div>
+          <div class="app-card-pills">
+            <span class="pill">Prévisions 7 jours</span>
+            <span class="pill">5 pays</span>
+            <span class="pill">Calcul d'économie</span>
+          </div>
+          <div class="app-card-cta">
+            Découvrir l'app
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+          </div>
+        </div>
+      </a>
 
-                    <div class="app-actions">
-                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
-                            target="_blank" rel="noopener noreferrer">Voir l'application</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Hippique Simu -->
+      <a class="app-card" href="hippique-simu.html">
+        <div class="app-card-media">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="image/hippique-simu-bg.mp4" type="video/mp4">
+          </video>
+          <span class="app-card-tag tag-app">Application</span>
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-name">Hippique Simu</div>
+          <div class="app-card-desc">Simulez des paris hippiques, suivez les courses du jour et progressez avec les modes entraînement et compétition.</div>
+          <div class="app-card-pills">
+            <span class="pill">Simulation paris</span>
+            <span class="pill">Mode compétition</span>
+            <span class="pill">Courses en direct</span>
+          </div>
+          <div class="app-card-cta">
+            Découvrir l'app
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+          </div>
+        </div>
+      </a>
 
-        <section id="hippique-simu" class="section surface">
-            <div class="section-head">
-                <div>
-                    <div class="section-tag">Mes applications</div>
-                    <h2>Hippique Simu</h2>
-                    <p>
-                        Une application dédiée à la simulation et au suivi des courses hippiques, pensée pour
-                        s'entraîner, comparer ses choix et progresser.
-                    </p>
-                </div>
-                <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" class="btn btn-primary"
-                    target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
-            </div>
+    </div>
+  </div>
+</section>
 
-            <div class="app-layout">
-                <div class="app-logo">
-                    <video autoplay muted loop playsinline preload="metadata" aria-label="Aperçu vidéo Hippique Simu">
-                        <source src="image/hippique-simu-bg.mp4" type="video/mp4">
-                    </video>
-                </div>
+<!-- ── ABOUT ── -->
+<section class="section" style="padding-top: 0;" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">À propos</div>
+        <h2 class="section-title">Un studio,<br>une vision.</h2>
+        <p>Rico Code est un studio indépendant de développement mobile. Je conçois et publie des applications Android utiles, pensées pour des utilisateurs particuliers comme professionnels, avec un focus sur la clarté et la rapidité d'usage.</p>
+        <p>Chaque application est construite pour répondre à un vrai besoin quotidien — sans superflu, avec soin.</p>
+        <div style="margin-top: 28px;">
+          <a class="btn btn-ghost" href="contact.html" style="display:inline-flex;">Discutons de votre projet →</a>
+        </div>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="about-card-icon" style="background: rgba(77,227,255,0.10);">📱</div>
+          <h4>Android natif</h4>
+          <p>Applications développées nativement pour des performances optimales.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon" style="background: rgba(90,140,255,0.10);">⚡</div>
+          <h4>Rapide & léger</h4>
+          <p>Interfaces épurées, démarrage instantané, expérience fluide.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon" style="background: rgba(157,101,255,0.10);">🎯</div>
+          <h4>Centré usage</h4>
+          <p>Chaque fonctionnalité répond à un vrai besoin identifié.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon" style="background: rgba(74,222,128,0.10);">🔒</div>
+          <h4>Respect vie privée</h4>
+          <p>Données minimales, transparence totale sur l'utilisation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="app-card app-card-video">
-                    <video class="card-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                        <source src="image/hippique-simu-bg.mp4" type="video/mp4">
-                    </video>
-                    <div class="app-intro">
-                        <h3>Hippique Simu : Simulation Turf</h3>
-                        <p>
-                            Une application dédiée aux passionnés de courses hippiques pour suivre les courses du jour,
-                            simuler des paris, tester leurs stratégies et progresser dans un environnement mobile
-                            fluide.
-                        </p>
-                        <div class="app-highlight">Analyse, simulation, compétition</div>
-                    </div>
+<!-- ── CONTACT CTA ── -->
+<section class="section" style="padding-top: 0; padding-bottom: 80px;">
+  <div class="wrap">
+    <div class="contact-band">
+      <div>
+        <h2>Vous avez un projet ?</h2>
+        <p>Besoin d'une application Android sur mesure, d'un conseil ou d'une collaboration ? Je suis disponible pour en discuter.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="contact.html">Prendre contact</a>
+        <a class="btn btn-ghost" href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <div class="app-grid">
-                        <div class="info-card">
-                            <strong>Courses du jour</strong>
-                            <span>Réunions, hippodromes, partants et cotes accessibles rapidement.</span>
-                        </div>
-                        <div class="info-card">
-                            <strong>Simulateur complet</strong>
-                            <span>Paris simples et combinés avec estimation immédiate des gains.</span>
-                        </div>
-                        <div class="info-card">
-                            <strong>Deux modes</strong>
-                            <span>Entraînement pour progresser et compétition pour se comparer aux autres
-                                joueurs.</span>
-                        </div>
-                        <div class="info-card">
-                            <strong>Expérience mobile</strong>
-                            <span>Interface rapide, favoris, alertes de cotes et personnalisation du profil.</span>
-                        </div>
-                    </div>
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-copy">© 2026 Rico Code · <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
+    <div class="footer-links">
+      <a href="essence-predict.html">Essence Predict</a>
+      <a href="hippique-simu.html">Hippique Simu</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
 
-                    <div class="app-actions">
-                        <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf"
-                            class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir l'application</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <div>Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
-            <div class="footer-links">
-                <a href="essence-predict.html">Essence Predict</a>
-                <a href="hippique-simu.html">Hippique Simu</a>
-                <a href="app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
-                <a href="privacy-policy.html">Confidentialité</a>
-            </div>
-        </footer>
-    </main>
 </body>
-
 </html>

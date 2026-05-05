@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Rico Code</title>
+  <meta name="description" content="Contactez Rico Code pour un projet d'application Android, une collaboration ou toute question.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#06101c">
+  <link rel="canonical" href="https://ricocodedev-stack.github.io/contact.html">
+  <meta property="og:site_name" content="Rico Code">
+  <meta property="og:title" content="Contact - Rico Code">
+  <meta property="og:description" content="Contactez Rico Code pour un projet d'application Android, une collaboration ou toute question.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ricocodedev-stack.github.io/contact.html">
+  <meta property="og:image" content="https://ricocodedev-stack.github.io/image/10561.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact - Rico Code">
+  <meta name="twitter:description" content="Contactez Rico Code pour un projet d'application Android, une collaboration ou toute question.">
+  <meta name="twitter:image" content="https://ricocodedev-stack.github.io/image/10561.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06101c; --surface: rgba(12,20,34,0.80);
+      --border: rgba(255,255,255,0.08); --border-hi: rgba(77,227,255,0.28);
+      --text: #eef3fc; --muted: rgba(200,215,240,0.62);
+      --accent: #4de3ff; --accent-2: #5a8cff;
+      --r-xl: 28px; --r-lg: 20px; --r-md: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(ellipse 70% 40% at 50% -5%, rgba(77,227,255,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 28% at 10% 80%, rgba(90,140,255,0.06) 0%, transparent 55%);
+    }
+    .wrap { position: relative; z-index: 1; width: min(940px, 100% - 40px); margin: 0 auto; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); background: rgba(6,16,28,0.82); backdrop-filter: blur(20px) saturate(160%); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 36px; height: 36px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.10); }
+    .logo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.06em; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { display: block; padding: 8px 14px; border-radius: 10px; text-decoration: none; color: var(--muted); font-size: 0.92rem; font-weight: 500; transition: color 0.18s, background 0.18s; }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-links a.active { color: var(--accent); }
+    .btn-nav { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(77,227,255,0.18), rgba(90,140,255,0.15)); border: 1px solid rgba(77,227,255,0.30); color: var(--text); font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: transform 0.18s, border-color 0.18s; }
+    .btn-nav:hover { transform: translateY(-1px); border-color: rgba(77,227,255,0.55); }
+
+    /* HERO */
+    .page-hero { padding: 80px 0 64px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(77,227,255,0.10); border: 1px solid rgba(77,227,255,0.20); color: #a8f3ff; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 22px; }
+    .page-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.6rem, 5vw, 4rem); font-weight: 800; line-height: 1.04; letter-spacing: -0.04em; max-width: 14ch; }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .page-hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.72; margin-top: 18px; max-width: 48ch; }
+
+    /* CONTACT GRID */
+    .contact-grid { display: grid; grid-template-columns: 0.9fr 1fr; gap: 36px; align-items: start; padding-bottom: 100px; }
+
+    /* INFO SIDE */
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .info-block {
+      padding: 24px; border-radius: var(--r-lg); border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display: flex; align-items: flex-start; gap: 16px;
+      transition: border-color 0.18s, background 0.18s;
+    }
+    .info-block:hover { border-color: rgba(77,227,255,0.20); background: rgba(77,227,255,0.03); }
+    .info-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .info-block h4 { font-family: 'Syne', sans-serif; font-size: 0.94rem; font-weight: 700; margin-bottom: 5px; }
+    .info-block p { color: var(--muted); font-size: 0.88rem; line-height: 1.60; }
+    .info-block a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .info-block a:hover { text-decoration: underline; }
+
+    .availability { margin-top: 8px; padding: 20px 24px; border-radius: var(--r-lg); border: 1px solid rgba(74,222,128,0.20); background: rgba(74,222,128,0.05); display: flex; align-items: center; gap: 14px; }
+    .avail-dot { width: 10px; height: 10px; border-radius: 50%; background: #4ade80; flex-shrink: 0; animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.5); } 50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(74,222,128,0); } }
+    .availability p { color: rgba(200,215,240,0.80); font-size: 0.90rem; line-height: 1.55; }
+    .availability strong { color: var(--text); }
+
+    /* FORM */
+    .contact-form-wrap {
+      padding: 36px; border-radius: var(--r-xl); border: 1px solid var(--border);
+      background: rgba(12,20,34,0.70); backdrop-filter: blur(16px);
+    }
+    .form-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+    .form-sub { color: var(--muted); font-size: 0.90rem; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+    .field label { font-size: 0.84rem; font-weight: 600; color: rgba(200,215,240,0.80); letter-spacing: 0.02em; }
+    .field input, .field textarea, .field select {
+      padding: 12px 16px; border-radius: 12px;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.04);
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.94rem;
+      outline: none; transition: border-color 0.18s, background 0.18s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(200,215,240,0.35); }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: rgba(77,227,255,0.40); background: rgba(77,227,255,0.04); }
+    .field textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
+    .field select option { background: #0c1422; color: var(--text); }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--r-md); font-weight: 700; font-size: 0.96rem; text-decoration: none; border: 1px solid var(--border); transition: transform 0.18s, border-color 0.18s, background 0.18s; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+    .btn-primary { background: linear-gradient(135deg, rgba(77,227,255,0.22), rgba(90,140,255,0.18)); border-color: rgba(77,227,255,0.35); color: var(--text); width: 100%; justify-content: center; }
+    .btn-primary:hover { transform: translateY(-2px); border-color: rgba(77,227,255,0.60); box-shadow: 0 8px 28px rgba(77,227,255,0.15); }
+
+    /* success state */
+    .form-success { display: none; text-align: center; padding: 40px 20px; }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .form-success h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+    .form-success p { color: var(--muted); font-size: 0.94rem; line-height: 1.65; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 36px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-copy { color: var(--muted); font-size: 0.88rem; }
+    .footer-copy a { color: var(--text); text-decoration: none; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px; }
+    .footer-links a { padding: 6px 12px; border-radius: 8px; color: var(--muted); font-size: 0.88rem; text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .footer-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+    @media (max-width: 860px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-img"><img src="image/10561.png" alt="Rico Code"></span>
+      <span class="logo-name">RICO CODE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="essence-predict.html">Essence Predict</a></li>
+      <li><a href="hippique-simu.html">Hippique Simu</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a class="btn-nav" href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+      Google Play
+    </a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Contact</div>
+    <h1>Parlons de votre <em>projet</em>.</h1>
+    <p>Besoin d'une application Android sur mesure, d'un conseil technique ou d'une collaboration ? Je suis disponible et à l'écoute.</p>
+  </div>
+</section>
+
+<div class="wrap contact-grid">
+
+  <!-- INFO -->
+  <div class="contact-info">
+    <div class="info-block">
+      <div class="info-icon" style="background: rgba(77,227,255,0.10);">✉️</div>
+      <div>
+        <h4>Email</h4>
+        <p>Réponse sous 24–48h en général.<br><a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-icon" style="background: rgba(90,140,255,0.10);">📱</div>
+      <div>
+        <h4>Google Play</h4>
+        <p>Retrouvez toutes mes applications publiées sur le store.<br><a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank" rel="noopener">Voir mon profil développeur →</a></p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-icon" style="background: rgba(157,101,255,0.10);">🛠️</div>
+      <div>
+        <h4>Développement sur mesure</h4>
+        <p>Application Android native, conseil en architecture mobile, optimisation de performance — discutons de vos besoins.</p>
+      </div>
+    </div>
+
+    <div class="availability">
+      <span class="avail-dot"></span>
+      <p><strong>Disponible pour de nouveaux projets</strong><br>Actuellement ouvert aux missions freelance et collaborations.</p>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="contact-form-wrap">
+    <div id="form-container">
+      <div class="form-title">Envoyez un message</div>
+      <div class="form-sub">Je vous répondrai dans les meilleurs délais.</div>
+
+      <form id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">Prénom</label>
+            <input type="text" id="fname" name="fname" placeholder="Jean" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="lname">Nom</label>
+            <input type="text" id="lname" name="lname" placeholder="Dupont" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span style="color:rgba(200,215,240,0.4)">*</span></label>
+          <input type="email" id="email" name="email" placeholder="jean.dupont@email.com" required autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="subject">Sujet</label>
+          <select id="subject" name="subject">
+            <option value="">Sélectionnez un sujet…</option>
+            <option value="projet">Projet sur mesure</option>
+            <option value="collaboration">Collaboration</option>
+            <option value="support">Support application</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message <span style="color:rgba(200,215,240,0.4)">*</span></label>
+          <textarea id="message" name="message" placeholder="Décrivez votre projet ou votre question…" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Envoyer le message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div class="form-success" id="form-success">
+      <div class="success-icon">✅</div>
+      <h3>Email préparé !</h3>
+      <p>Votre application mail va s'ouvrir avec le message prérempli. Il ne reste plus qu'à l'envoyer.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-copy">© 2026 Rico Code · <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="essence-predict.html">Essence Predict</a>
+      <a href="hippique-simu.html">Hippique Simu</a>
+      <a href="privacy-policy.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!email || !message) {
+      alert('Veuillez renseigner votre email et votre message.');
+      return;
+    }
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const subject = document.getElementById('subject').value || 'contact';
+    const body = [
+      fname || lname ? `Nom: ${fname} ${lname}`.trim() : '',
+      `Email: ${email}`,
+      '',
+      message
+    ].filter(Boolean).join('\n');
+
+    window.location.href = `mailto:rico.code.dev@gmail.com?subject=${encodeURIComponent('Rico Code - ' + subject)}&body=${encodeURIComponent(body)}`;
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
