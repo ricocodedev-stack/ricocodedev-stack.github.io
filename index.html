@@ -179,11 +179,16 @@
     .btn-ghost:hover { background: rgba(255,255,255,0.08); color: var(--text); transform: translateY(-1px); }
 
     /* hero visual */
-    .hero-visual {
-      position: relative;
+    .hero-media-stack {
       width: 100%;
       max-width: 380px;
       justify-self: end;
+      display: grid;
+      gap: 12px;
+    }
+    .hero-visual {
+      position: relative;
+      width: 100%;
       border-radius: var(--r-xl);
       overflow: hidden;
       aspect-ratio: 5/4;
@@ -199,10 +204,11 @@
       background: linear-gradient(160deg, rgba(6,16,28,0.18), rgba(6,16,28,0.55));
     }
     .hero-badge {
-      position: absolute; bottom: 20px; left: 20px; z-index: 2;
+      justify-self: start;
       display: flex; align-items: center; gap: 10px;
       padding: 10px 16px; border-radius: 14px;
-      background: rgba(6,16,28,0.76); backdrop-filter: blur(12px);
+      background: rgba(6,16,28,0.76);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.10);
     }
     .hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
@@ -382,7 +388,8 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
       .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
-      .hero-visual { aspect-ratio: 4/3; max-width: 100%; justify-self: stretch; }
+      .hero-media-stack { max-width: 100%; justify-self: stretch; }
+      .hero-visual { aspect-ratio: 4/3; }
       .stats-inner { grid-template-columns: 1fr; }
       .stat + .stat { border-left: none; border-top: 1px solid var(--border); }
       .apps-grid { grid-template-columns: 1fr; }
@@ -473,10 +480,12 @@
         <a class="btn btn-ghost" href="contact.html">Me contacter</a>
       </div>
     </div>
-    <div class="hero-visual">
-      <video autoplay muted loop playsinline preload="metadata">
-        <source src="image/studio-android-bg.mp4" type="video/mp4">
-      </video>
+    <div class="hero-media-stack">
+      <div class="hero-visual">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="image/studio-android-bg.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         <span>Disponible sur Google Play</span>
