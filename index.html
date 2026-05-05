@@ -5,6 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Rico Code - Studio indépendant spécialisé dans les applications Android.">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <meta name="theme-color" content="#07101b">
+    <link rel="canonical" href="https://ricocodedev-stack.github.io/">
+    <meta property="og:site_name" content="Rico Code">
+    <meta property="og:title" content="Rico Code - Applications Android">
+    <meta property="og:description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ricocodedev-stack.github.io/">
+    <meta property="og:image" content="https://ricocodedev-stack.github.io/image/10561.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rico Code - Applications Android">
+    <meta name="twitter:description" content="Studio indépendant spécialisé dans les applications Android utiles et rapides à prendre en main.">
+    <meta name="twitter:image" content="https://ricocodedev-stack.github.io/image/10561.png">
     <title>Rico Code - Applications Android</title>
     <style>
         :root {
@@ -39,6 +52,7 @@
                 radial-gradient(circle at top, rgba(77, 227, 255, 0.12), transparent 28%),
                 linear-gradient(180deg, #040913 0%, #08111d 52%, #091321 100%);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -174,6 +188,7 @@
             right: 0;
             z-index: 5;
             min-width: 260px;
+            max-width: calc(100vw - 32px);
             padding: 10px;
             border-radius: 16px;
             background: rgba(7, 16, 27, 0.96);
@@ -255,7 +270,6 @@
         .hero-copy {
             padding: 8px 4px 8px 0;
             max-width: 560px;
-            margin-left: -14px;
         }
 
         .eyebrow {
@@ -469,11 +483,15 @@
             .hero h1 {
                 max-width: none;
             }
+
+            .app-logo {
+                margin: 0 auto;
+            }
         }
 
         @media (max-width: 760px) {
             .page {
-                width: min(100% - 24px, 1120px);
+                width: min(100% - 20px, 1120px);
                 padding-top: 18px;
             }
 
@@ -481,23 +499,92 @@
             .section-head {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 14px;
             }
 
             .menu-panel {
                 left: 0;
                 right: auto;
+                min-width: 220px;
             }
 
             .hero,
             .section {
-                padding: 22px;
+                padding: 18px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 2.7rem);
             }
 
             .app-grid {
                 grid-template-columns: 1fr;
             }
+
+            .hero-actions,
+            .app-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-actions .btn,
+            .app-actions .btn {
+                width: 100%;
+            }
+
+            .app-logo {
+                width: 140px;
+                height: 140px;
+                border-radius: 24px;
+            }
+
+            .footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Rico Code",
+          "url": "https://ricocodedev-stack.github.io/",
+          "logo": "https://ricocodedev-stack.github.io/image/10561.png",
+          "sameAs": [
+            "https://play.google.com/store/apps/developer?id=Rico+Code"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "Rico Code",
+          "url": "https://ricocodedev-stack.github.io/",
+          "description": "Studio indépendant spécialisé dans les applications Android."
+        },
+        {
+          "@type": "ItemList",
+          "name": "Applications Rico Code",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "url": "https://ricocodedev-stack.github.io/essence-predict.html",
+              "name": "Essence Predict"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "url": "https://ricocodedev-stack.github.io/hippique-simu.html",
+              "name": "Hippique Simu"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -519,8 +606,8 @@
                     <div class="menu-panel">
                         <div class="menu-group">
                             <span class="menu-title">Applications</span>
-                            <a href="#essence-predict">Essence Predict</a>
-                            <a href="#hippique-simu">Hippique Simu</a>
+                            <a href="essence-predict.html">Essence Predict</a>
+                            <a href="hippique-simu.html">Hippique Simu</a>
                             <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank"
                                 rel="noopener noreferrer">Toutes les apps</a>
                         </div>
@@ -546,12 +633,6 @@
                     De la simulation hippique à la comparaison des prix du carburant, chaque outil aide à gagner du
                     temps, comparer clairement et faire de meilleurs choix au quotidien.
                 </p>
-                <div class="hero-actions">
-                    <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
-                        target="_blank" rel="noopener noreferrer">Voir mes applications</a>
-                    <a href="#essence-predict" class="btn">Voir Essence Predict</a>
-                    <a href="#hippique-simu" class="btn">Voir Hippique Simu</a>
-                </div>
             </div>
         </section>
 
@@ -617,8 +698,6 @@
                     <div class="app-actions">
                         <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn btn-primary"
                             target="_blank" rel="noopener noreferrer">Voir l'application</a>
-                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn" target="_blank"
-                            rel="noopener noreferrer">Voir mes applications</a>
                     </div>
                 </div>
             </div>
@@ -682,8 +761,6 @@
                     <div class="app-actions">
                         <a href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf"
                             class="btn btn-primary" target="_blank" rel="noopener noreferrer">Voir l'application</a>
-                        <a href="https://play.google.com/store/apps/developer?id=Rico+Code" class="btn" target="_blank"
-                            rel="noopener noreferrer">Voir mes applications</a>
                     </div>
                 </div>
             </div>
@@ -692,9 +769,8 @@
         <footer class="footer">
             <div>Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
             <div class="footer-links">
-                <a href="https://play.google.com/store/apps/developer?id=Rico+Code" target="_blank"
-                    rel="noopener noreferrer">Mes applications</a>
-                <a href="#essence-predict">Essence Predict</a>
+                <a href="essence-predict.html">Essence Predict</a>
+                <a href="hippique-simu.html">Hippique Simu</a>
                 <a href="app-ads.txt" target="_blank" rel="noopener noreferrer">app-ads.txt</a>
                 <a href="privacy-policy.html">Confidentialité</a>
             </div>

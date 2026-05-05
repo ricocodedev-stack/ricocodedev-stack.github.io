@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f111a">
+    <link rel="canonical" href="https://ricocodedev-stack.github.io/hippique-simu.html">
+    <meta property="og:site_name" content="Rico Code">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hippique Simu - Rico Code">
+    <meta name="twitter:description" content="Application de simulation et de suivi des courses hippiques.">
+    <meta name="twitter:image" content="https://ricocodedev-stack.github.io/image/hippsimu.png">
+    <title>Hippique Simu - Rico Code</title>
+    <meta name="description" content="Hippique Simu aide à suivre les courses du jour, simuler des paris et progresser dans un environnement mobile fluide.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="Hippique Simu - Rico Code">
+    <meta property="og:description" content="Application de simulation et de suivi des courses hippiques.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ricocodedev-stack.github.io/hippique-simu.html">
+    <meta property="og:image" content="https://ricocodedev-stack.github.io/image/hippsimu.png">
+    <style>
+        :root {
+            --bg: #0f111a;
+            --panel: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.12);
+            --text: #f5f7fb;
+            --muted: rgba(245, 247, 251, 0.74);
+            --accent: #9d4e9d;
+            --accent-2: #c46a55;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, #0f111a 0%, #171b29 100%);
+            min-height: 100vh;
+        }
+        a { color: inherit; }
+        .page { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 24px 0 40px; }
+        .topbar, .hero, .footer { display: grid; }
+        .topbar, .footer { grid-template-columns: 1fr auto; align-items: center; gap: 16px; }
+        .brand { text-decoration: none; font-weight: 800; letter-spacing: .08em; }
+        .nav { display: flex; flex-wrap: wrap; gap: 10px; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.04);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; }
+        .surface {
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: var(--panel);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,.25);
+        }
+        .hero { grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr); }
+        .hero-copy, .hero-media, .section-content { padding: 28px; }
+        .eyebrow { color: #e49ce4; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; }
+        h1, h2, h3 { margin: 0; line-height: 1.1; }
+        h1 { font-size: clamp(2rem, 4vw, 3.5rem); margin-top: 12px; max-width: 12ch; }
+        p { color: var(--muted); line-height: 1.65; }
+        .actions, .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+        .hero-media { background: rgba(255,255,255,0.03); display: grid; gap: 12px; align-content: start; }
+        video, img { width: 100%; display: block; border-radius: 18px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+        .feature { padding: 16px; border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,0.03); }
+        .feature strong { display: block; margin-bottom: 8px; }
+        .section { margin-top: 16px; }
+        @media (max-width: 860px) {
+            .hero, .topbar, .footer { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Hippique Simu",
+      "applicationCategory": "SportsApplication",
+      "operatingSystem": "Android",
+      "url": "https://ricocodedev-stack.github.io/hippique-simu.html",
+      "description": "Application de simulation et de suivi des courses hippiques, pensée pour s'entraîner, comparer ses choix et progresser.",
+      "image": "https://ricocodedev-stack.github.io/image/hippsimu.png",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Rico Code",
+        "url": "https://ricocodedev-stack.github.io/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "url": "https://play.google.com/store/apps/details?id=io.rico.cockpitturf"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Hippique Simu - Rico Code",
+      "url": "https://ricocodedev-stack.github.io/hippique-simu.html",
+      "description": "Page dédiée à l'application Hippique Simu sur le site Rico Code."
+    }
+    </script>
+</head>
+<body>
+    <main class="page">
+        <header class="topbar">
+            <a class="brand" href="index.html">RICO CODE</a>
+            <nav class="nav" aria-label="Navigation">
+                <a class="btn" href="index.html">Accueil</a>
+                <a class="btn primary" href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" target="_blank" rel="noopener noreferrer">Google Play</a>
+            </nav>
+        </header>
+
+        <section class="hero surface">
+            <div class="hero-copy">
+                <div class="eyebrow">Mes applications</div>
+                <h1>Hippique Simu</h1>
+                <p>
+                    Une application dédiée à la simulation et au suivi des courses hippiques, pensée pour suivre les
+                    courses du jour, tester des stratégies et progresser dans une interface mobile fluide.
+                </p>
+                <div class="actions">
+                    <a class="btn primary" href="https://play.google.com/store/apps/details?id=io.rico.cockpitturf" target="_blank" rel="noopener noreferrer">Ouvrir sur Google Play</a>
+                    <a class="btn" href="essence-predict.html">Voir Essence Predict</a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img src="hippsimu.png" alt="Aperçu de l'application Hippique Simu">
+                <p>Courses du jour, simulateur de paris, mode entraînement et mode compétition.</p>
+            </div>
+        </section>
+
+        <section class="section surface">
+            <div class="section-content">
+                <h2>Ce que Google peut lire sur cette page</h2>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <strong>Courses du jour</strong>
+                        <span>Réunions, hippodromes, partants et cotes rapidement accessibles.</span>
+                    </div>
+                    <div class="feature">
+                        <strong>Simulateur complet</strong>
+                        <span>Paris simples et combinés avec estimation immédiate des gains.</span>
+                    </div>
+                    <div class="feature">
+                        <strong>Deux modes</strong>
+                        <span>Entraînement pour progresser et compétition pour se comparer aux autres joueurs.</span>
+                    </div>
+                    <div class="feature">
+                        <strong>Preuves d'existence</strong>
+                        <span>Image, description, lien Play Store et données structurées dédiées.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div>Contact : <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
+            <div class="links">
+                <a href="index.html">Accueil</a>
+                <a href="essence-predict.html">Essence Predict</a>
+                <a href="privacy-policy.html">Confidentialité</a>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>
