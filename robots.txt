@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ricocodedev-stack.github.io/sitemap.xml
+Sitemap: https://ricocodedev-stack.github.io/sitemap.txt
