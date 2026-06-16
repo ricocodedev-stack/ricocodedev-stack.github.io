@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opiny — Rico Code</title>
+  <meta name="description" content="Opiny est un réseau social nouvelle génération pour partager son avis, voter sur des sujets qui font réagir et prédire les tendances de demain.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#080d1a">
+  <link rel="canonical" href="https://ricocodedev-stack.github.io/opiny.html">
+  <meta property="og:site_name" content="Rico Code">
+  <meta property="og:title" content="Opiny - Rico Code">
+  <meta property="og:description" content="Partagez votre avis, votez sur les sujets qui font réagir et prédisez les tendances de demain avec Opiny.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ricocodedev-stack.github.io/opiny.html">
+  <meta property="og:image" content="https://ricocodedev-stack.github.io/image/opiny.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Opiny - Rico Code">
+  <meta name="twitter:description" content="Un réseau social d'opinions, de votes et de prédictions pour voir clairement ce que pense la communauté.">
+  <meta name="twitter:image" content="https://ricocodedev-stack.github.io/image/opiny.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080d1a; --surface: rgba(13,20,36,0.80);
+      --border: rgba(255,255,255,0.09); --text: #f3f7ff;
+      --muted: rgba(210,220,240,0.66); --accent: #2dd4ff;
+      --accent-2: #ec4899; --accent-3: #a855f7;
+      --r-xl: 28px; --r-lg: 20px; --r-md: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(ellipse 70% 36% at 45% -8%, rgba(45,212,255,0.13) 0%, transparent 68%),
+        radial-gradient(ellipse 40% 30% at 88% 48%, rgba(236,72,153,0.11) 0%, transparent 62%),
+        radial-gradient(ellipse 38% 28% at 14% 78%, rgba(168,85,247,0.10) 0%, transparent 58%);
+    }
+    .wrap { position: relative; z-index: 1; width: min(940px, 100% - 40px); margin: 0 auto; }
+    nav { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); background: rgba(8,13,26,0.82); backdrop-filter: blur(20px) saturate(160%); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+    .logo-img { width: 36px; height: 36px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.10); }
+    .logo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.06em; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { display: block; padding: 8px 14px; border-radius: 10px; text-decoration: none; color: var(--muted); font-size: 0.92rem; font-weight: 500; transition: color 0.18s, background 0.18s; }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-links a.active { color: var(--accent); }
+    .btn-nav, .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border: 1px solid var(--border); transition: transform 0.18s, border-color 0.18s, background 0.18s; }
+    .btn-nav { padding: 9px 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(45,212,255,0.18), rgba(236,72,153,0.15)); color: var(--text); font-weight: 700; font-size: 0.88rem; }
+    .btn-nav:hover, .btn:hover { transform: translateY(-1px); border-color: rgba(45,212,255,0.45); }
+    .btn { padding: 13px 24px; border-radius: var(--r-md); font-weight: 700; font-size: 0.95rem; }
+    .btn-primary { background: linear-gradient(135deg, rgba(45,212,255,0.24), rgba(236,72,153,0.20)); border-color: rgba(45,212,255,0.34); color: var(--text); }
+    .btn-ghost { background: rgba(255,255,255,0.04); color: var(--muted); }
+    .hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 42px; align-items: center; padding: 80px 0 64px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(45,212,255,0.10); border: 1px solid rgba(45,212,255,0.20); color: #a8f3ff; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 22px; }
+    h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.7rem, 5vw, 4.3rem); font-weight: 800; line-height: 1.02; letter-spacing: -0.04em; }
+    h1 em { font-style: normal; background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { color: var(--muted); font-size: 1.04rem; line-height: 1.72; margin-top: 18px; max-width: 50ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-visual { position: relative; width: 100%; max-width: 340px; aspect-ratio: 4/5; justify-self: end; border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--border); background: rgba(255,255,255,0.04); box-shadow: 0 32px 80px rgba(0,0,0,0.50); }
+    .opiny-scene {
+      position: relative; width: 100%; height: 100%; padding: 22px;
+      display: grid; align-content: center; justify-items: center; gap: 16px;
+      background:
+        radial-gradient(circle at 22% 20%, rgba(45,212,255,0.24), transparent 36%),
+        radial-gradient(circle at 88% 12%, rgba(236,72,153,0.22), transparent 35%),
+        radial-gradient(circle at 20% 82%, rgba(168,85,247,0.20), transparent 34%),
+        linear-gradient(135deg, #080d1a, #17102b 58%, #0d1d25);
+    }
+    .opiny-scene::before {
+      content: ""; position: absolute; inset: 18px; border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle, black 18%, transparent 74%);
+    }
+    .app-logo {
+      position: relative; z-index: 2; width: 150px; border-radius: 34px;
+      box-shadow: 0 22px 52px rgba(0,0,0,0.34), 0 0 48px rgba(236,72,153,0.18);
+      animation: opinyFloat 4.5s ease-in-out infinite;
+    }
+    .mock-card {
+      position: relative; z-index: 2; width: min(100%, 270px);
+      padding: 16px; border-radius: 18px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.24);
+      animation: opinyCardPulse 5.2s ease-in-out infinite;
+    }
+    .mock-card strong { display: block; font-family: 'Syne', sans-serif; font-size: 0.98rem; }
+    .vote-row { margin-top: 10px; display: grid; gap: 8px; }
+    .vote { padding: 8px 10px; border-radius: 11px; background: rgba(255,255,255,0.06); color: rgba(243,247,255,0.84); font-size: 0.82rem; }
+    .vote span { display: block; height: 5px; margin-top: 7px; border-radius: 999px; background: linear-gradient(90deg, var(--accent) 0 64%, rgba(255,255,255,0.14) 64%); background-size: 150% 100%; animation: opinyBar 3.4s ease-in-out infinite; }
+    .float-chip {
+      position: absolute; z-index: 1; display: inline-flex; align-items: center; justify-content: center;
+      min-width: 42px; height: 32px; padding: 0 11px; border-radius: 999px;
+      background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(243,247,255,0.88); font-size: 0.78rem; font-weight: 800;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      animation: opinyDrift 5.5s ease-in-out infinite;
+    }
+    .chip-vote { top: 24px; right: 24px; color: #a7f3d0; }
+    .chip-trend { bottom: 28px; left: 24px; color: #f9a8d4; animation-delay: -1.7s; }
+    .chip-predict { top: 38px; left: 24px; color: #bae6fd; animation-delay: -2.6s; }
+    @keyframes opinyFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-9px) rotate(1deg); }
+    }
+    @keyframes opinyCardPulse {
+      0%, 100% { transform: translateY(0); border-color: rgba(255,255,255,0.12); }
+      50% { transform: translateY(5px); border-color: rgba(45,212,255,0.24); }
+    }
+    @keyframes opinyBar {
+      0%, 100% { background-position: 0 0; filter: saturate(1); }
+      50% { background-position: 35% 0; filter: saturate(1.35); }
+    }
+    @keyframes opinyDrift {
+      0%, 100% { transform: translate3d(0,0,0); opacity: 0.78; }
+      50% { transform: translate3d(0,-9px,0); opacity: 1; }
+    }
+    .section { padding: 76px 0; }
+    .section-label { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+    .section-label::before { content: ""; width: 20px; height: 1px; background: var(--accent); opacity: 0.6; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.08; }
+    .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-top: 14px; max-width: 56ch; }
+    .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 44px; }
+    .feature-card { padding: 28px; border-radius: var(--r-lg); border: 1px solid var(--border); background: rgba(255,255,255,0.035); transition: border-color 0.18s, background 0.18s; }
+    .feature-card:hover { border-color: rgba(45,212,255,0.26); background: rgba(45,212,255,0.04); }
+    .feature-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 8px; }
+    .feature-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.66; }
+    .cta-band { border-radius: var(--r-xl); padding: 46px; border: 1px solid var(--border); background: linear-gradient(135deg, rgba(13,20,36,0.92), rgba(15,14,35,0.95)); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .cta-band h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em; }
+    .cta-band p { color: var(--muted); font-size: 0.96rem; line-height: 1.65; margin-top: 10px; max-width: 46ch; }
+    footer { border-top: 1px solid var(--border); padding: 36px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-copy { color: var(--muted); font-size: 0.88rem; }
+    .footer-copy a { color: var(--text); text-decoration: none; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px; }
+    .footer-links a { padding: 6px 12px; border-radius: 8px; color: var(--muted); font-size: 0.88rem; text-decoration: none; transition: color 0.15s, background 0.15s; }
+    .footer-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; padding: 60px 0; }
+      .hero-visual { max-width: 100%; aspect-ratio: 4/3; justify-self: stretch; }
+      .features-grid { grid-template-columns: 1fr; }
+      .cta-band { flex-direction: column; padding: 32px 24px; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Opiny",
+    "applicationCategory": "SocialNetworkingApplication",
+    "operatingSystem": "Android",
+    "url": "https://ricocodedev-stack.github.io/opiny.html",
+    "description": "Réseau social nouvelle génération pour partager son avis, voter sur des sujets qui font réagir et prédire les tendances de demain.",
+    "image": "https://ricocodedev-stack.github.io/image/opiny.png",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Rico Code",
+      "url": "https://ricocodedev-stack.github.io/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "url": "https://play.google.com/store/apps/details?id=io.rico.opiny"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-img"><img src="image/10561.png" alt="Rico Code"></span>
+      <span class="logo-name">RICO CODE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="opiny.html" class="active">Opiny</a></li>
+      <li><a href="essence-predict.html">Essence Predict</a></li>
+      <li><a href="hippique-simu.html">Hippique Simu</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn-nav" href="https://play.google.com/store/apps/details?id=io.rico.opiny" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+      Google Play
+    </a>
+  </div>
+</nav>
+
+<section>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-eyebrow">Réseau social d'opinions</div>
+      <h1>Partagez votre avis,<br><em>votez</em>, prédisez.</h1>
+      <p class="hero-sub">Opiny transforme les discussions en formats plus clairs : une question, des choix, des résultats visibles. Moins de bruit, plus de clarté, et une nouvelle manière de comprendre ce que pense la communauté.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=io.rico.opiny" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+          Télécharger sur Google Play
+        </a>
+        <a class="btn btn-ghost" href="essence-predict.html">Voir les autres apps</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="opiny-scene">
+        <span class="float-chip chip-predict">🔮</span>
+        <span class="float-chip chip-vote">64%</span>
+        <span class="float-chip chip-trend">#trend</span>
+        <img class="app-logo" src="image/opiny.png" alt="Opiny">
+        <div class="mock-card">
+          <strong>Votre prédiction pour demain ?</strong>
+          <div class="vote-row">
+            <div class="vote">La tendance monte <span></span></div>
+            <div class="vote">La communauté hésite <span style="background: linear-gradient(90deg, var(--accent-2) 0 42%, rgba(255,255,255,0.14) 42%);"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-label">Fonctionnalités</div>
+    <h2 class="section-title">Les idées au centre,<br>les résultats visibles.</h2>
+    <p class="section-sub">Chaque sujet devient une question, chaque réponse devient un vote, et la communauté peut voir rapidement ce qui ressort vraiment.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Questions et votes</h3>
+        <p>Créez vos propres questions avec plusieurs réponses possibles et votez sur des sujets d'actualité, de société, de culture ou de divertissement.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Prédictions</h3>
+        <p>Publiez vos intuitions, suivez les résultats et comparez ce que la communauté imagine pour les tendances de demain.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Tendances communautaires</h3>
+        <p>Découvrez rapidement les idées qui émergent grâce à des résultats lisibles, structurés et pensés pour aller droit au point.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Tags, catégories et profil</h3>
+        <p>Explorez les sujets par centres d'intérêt et construisez un profil autour de vos opinions, réactions et prédictions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h2>Un réseau social plus clair.</h2>
+        <p>Que vous vouliez lancer un débat, tester une intuition ou découvrir les tendances du moment, Opiny donne un espace moderne pour participer, comparer et explorer.</p>
+      </div>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=io.rico.opiny" target="_blank" rel="noopener">Ouvrir sur Google Play</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-copy">© 2026 Rico Code · <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="opiny.html">Opiny</a>
+      <a href="essence-predict.html">Essence Predict</a>
+      <a href="hippique-simu.html">Hippique Simu</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -258,7 +258,7 @@
 
     /* ── APPS GRID ── */
     .apps-grid {
-      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 48px auto 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 48px auto 0;
       max-width: 900px;
     }
     .app-card {
@@ -281,6 +281,81 @@
     }
     .app-card-media video, .app-card-media img {
       width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .opiny-preview {
+      position: relative; width: 100%; height: 100%; padding: 20px;
+      display: grid; align-content: center; justify-items: center; gap: 14px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(45, 212, 191, 0.26), transparent 36%),
+        radial-gradient(circle at 85% 10%, rgba(236, 72, 153, 0.25), transparent 34%),
+        linear-gradient(135deg, #080d1a, #17102b 58%, #0d1d25);
+    }
+    .opiny-preview::before {
+      content: ""; position: absolute; inset: 18px; border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(circle, black 20%, transparent 74%);
+      opacity: 0.8;
+    }
+    .opiny-logo-card {
+      position: relative; z-index: 2;
+      width: 88px; height: 88px; border-radius: 26px;
+      overflow: hidden; border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.30), 0 0 38px rgba(236,72,153,0.18);
+      animation: opinyFloat 4.5s ease-in-out infinite;
+    }
+    .opiny-logo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .opiny-question {
+      position: relative; z-index: 2;
+      width: min(100%, 250px); padding: 15px; border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+      animation: opinyCardPulse 5.2s ease-in-out infinite;
+    }
+    .opiny-question strong {
+      display: block; font-family: 'Syne', sans-serif; font-size: 1rem; line-height: 1.2;
+    }
+    .opiny-choice {
+      margin-top: 11px; padding: 9px 10px; border-radius: 12px;
+      background: rgba(255,255,255,0.07);
+      color: rgba(238,243,252,0.86); font-size: 0.82rem;
+    }
+    .opiny-choice span {
+      display: block; height: 5px; margin-top: 7px; border-radius: 999px;
+      background: linear-gradient(90deg, #2dd4bf 0 68%, rgba(255,255,255,0.14) 68%);
+      background-size: 150% 100%;
+      animation: opinyBar 3.4s ease-in-out infinite;
+    }
+    .opiny-bubble {
+      position: absolute; z-index: 1; display: inline-flex; align-items: center; justify-content: center;
+      min-width: 38px; height: 30px; padding: 0 10px; border-radius: 999px;
+      background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(238,243,252,0.88); font-size: 0.76rem; font-weight: 800;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+      animation: opinyDrift 5.5s ease-in-out infinite;
+    }
+    .opiny-bubble.vote { top: 20px; right: 22px; color: #a7f3d0; }
+    .opiny-bubble.trend { bottom: 24px; left: 22px; color: #f9a8d4; animation-delay: -1.7s; }
+    .opiny-bubble.prediction { top: 34px; left: 24px; color: #bae6fd; animation-delay: -2.6s; }
+    @keyframes opinyFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+    @keyframes opinyCardPulse {
+      0%, 100% { transform: translateY(0); border-color: rgba(255,255,255,0.12); }
+      50% { transform: translateY(4px); border-color: rgba(45,212,255,0.24); }
+    }
+    @keyframes opinyBar {
+      0%, 100% { background-position: 0 0; filter: saturate(1); }
+      50% { background-position: 35% 0; filter: saturate(1.35); }
+    }
+    @keyframes opinyDrift {
+      0%, 100% { transform: translate3d(0,0,0); opacity: 0.78; }
+      50% { transform: translate3d(0,-8px,0); opacity: 1; }
     }
     .app-card-media::after {
       content: "";
@@ -426,12 +501,18 @@
           {
             "@type": "ListItem",
             "position": 1,
+            "url": "https://ricocodedev-stack.github.io/opiny.html",
+            "name": "Opiny"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
             "url": "https://ricocodedev-stack.github.io/essence-predict.html",
             "name": "Essence Predict"
           },
           {
             "@type": "ListItem",
-            "position": 2,
+            "position": 3,
             "url": "https://ricocodedev-stack.github.io/hippique-simu.html",
             "name": "Hippique Simu"
           }
@@ -452,6 +533,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Accueil</a></li>
+      <li><a href="opiny.html">Opiny</a></li>
       <li><a href="essence-predict.html">Essence Predict</a></li>
       <li><a href="hippique-simu.html">Hippique Simu</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -499,7 +581,7 @@
   <div class="wrap">
     <div class="stats-inner">
       <div class="stat">
-        <div class="stat-num">2</div>
+        <div class="stat-num">3</div>
         <div class="stat-label">Applications publiées</div>
       </div>
       <div class="stat">
@@ -522,6 +604,39 @@
     <p class="section-sub">Des outils du quotidien pensés pour être simples, rapides et vraiment utiles.</p>
 
     <div class="apps-grid">
+
+      <!-- Opiny -->
+      <a class="app-card" href="opiny.html">
+        <div class="app-card-media">
+          <div class="opiny-preview">
+            <span class="opiny-bubble prediction">🔮</span>
+            <span class="opiny-bubble vote">68%</span>
+            <span class="opiny-bubble trend">#trend</span>
+            <div class="opiny-logo-card">
+              <img src="image/opiny.png" alt="Opiny">
+            </div>
+            <div class="opiny-question">
+              <strong>Quelle tendance va exploser demain ?</strong>
+              <div class="opiny-choice">IA créative <span></span></div>
+              <div class="opiny-choice">Réseaux d'opinion <span style="background: linear-gradient(90deg, #ec4899 0 51%, rgba(255,255,255,0.14) 51%);"></span></div>
+            </div>
+          </div>
+          <span class="app-card-tag tag-new">Nouveauté</span>
+        </div>
+        <div class="app-card-body">
+          <div class="app-card-name">Opiny</div>
+          <div class="app-card-desc">Partagez votre avis, votez sur les sujets qui font réagir et prédisez les tendances de demain dans un format clair.</div>
+          <div class="app-card-pills">
+            <span class="pill">Votes</span>
+            <span class="pill">Prédictions</span>
+            <span class="pill">Tendances</span>
+          </div>
+          <div class="app-card-cta">
+            Découvrir l'app
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19l7-7-7-7"/><path d="M5 12h14"/></svg>
+          </div>
+        </div>
+      </a>
 
       <!-- Essence Predict -->
       <a class="app-card" href="essence-predict.html">
@@ -633,6 +748,7 @@
   <div class="wrap footer-inner">
     <div class="footer-copy">© 2026 Rico Code · <a href="mailto:rico.code.dev@gmail.com">rico.code.dev@gmail.com</a></div>
     <div class="footer-links">
+      <a href="opiny.html">Opiny</a>
       <a href="essence-predict.html">Essence Predict</a>
       <a href="hippique-simu.html">Hippique Simu</a>
       <a href="contact.html">Contact</a>
